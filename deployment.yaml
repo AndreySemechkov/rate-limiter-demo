@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: 2023-08-12T19:26:11.000Z
+  labels:
+    app: rate-limiter-app
+  name: rate-limiter-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rate-limiter-app
+  template:
+    metadata:
+      labels:
+        app: rate-limiter-app
+    spec:
+      containers:
+      - image: localhost/rate-limiter:latest
+        name: rate-limiter-app
+        tty: true
+        imagePullPolicy: IfNotPresent
