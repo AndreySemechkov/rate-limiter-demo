@@ -8,6 +8,11 @@ dist:
 	podman save rate-limiter:latest --format oci-archive -o ~/code/playground/rate-limiter-image
 	kind load image-archive ~/code/playground/rate-limiter-image --name home-cluster
 
-run: build dist
-	# when on kind context
-	kubectl apply -f deployment.yaml
+deploy: build dist
+	kubectx kind-home-cluster
+	kubectl create namespace app 
+	kubectl apply -n app -f deployment.yaml
+
+run: build
+	podman run rate-limiter:latest	
+	
