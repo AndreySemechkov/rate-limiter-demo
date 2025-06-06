@@ -1,0 +1,4 @@
+image:
+  repository: "localhost/rate-limiter"
+  tag: "latest"
+  pullPolicy: IfNotPresent

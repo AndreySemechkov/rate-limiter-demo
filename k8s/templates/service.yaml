@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rate-limiter-app
+  labels:
+    app: rate-limiter-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: rate-limiter-app
+  ports:
+    - protocol: TCP
+      port: 9090
+      targetPort: 9090 

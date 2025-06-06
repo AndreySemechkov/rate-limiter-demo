@@ -16,7 +16,15 @@ spec:
         app: rate-limiter-app
     spec:
       containers:
-      - image: localhost/rate-limiter:latest
+      - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         name: rate-limiter-app
         tty: true
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        #imagePullSecrets:
+        #- name: dockerhub
+        env:
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: rate-limiter-db-password
+              key: password
